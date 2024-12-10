@@ -1,0 +1,48 @@
+sairama
+
+Cloud computing is accessing computing resources like servers, storage, and software over the internet. 
+It allows you to use resources on demand, pay only for what you use, and scale easily without owning physical hardware. 
+Examples include hosting websites or using online apps like Gmail.
+
+IaaS (Infrastructure as a Service)  
+Azure provides virtualized computing resources like servers, storage, and networks.  
+- Example: Azure Virtual Machines  
+- Use Case: Hosting websites, databases, or custom applications.  
+- Control: You manage the OS, middleware, runtime, and applications, while Azure manages the hardware and networking.  
+
+PaaS (Platform as a Service)  
+Azure provides a platform to develop, run, and manage applications without worrying about infrastructure.  
+- Example: Azure App Service  
+- Use Case: Building and deploying web and mobile apps.  
+- Control: You manage applications and data, while Azure handles OS, runtime, and infrastructure.  
+
+SaaS (Software as a Service)  
+Azure delivers fully managed software applications that you can use directly.  
+- Example: Microsoft 365, Azure DevOps  
+- Use Case: Using email services, CRM tools, or DevOps platforms.  
+- Control: You only use the software; Azure manages everything else.  
+
+The choice between these depends on how much control and management responsibility you want.
+
+Both AWS (Amazon Web Services) and Azure are highly popular, but AWS generally leads in market share, while Azure is growing rapidly, especially in enterprise adoption. Here's a quick comparison:
+
+AWS
+
+Launched earlier (2006), giving it a head start.
+Largest global market share in cloud computing.
+Popular with startups and tech companies.
+Azure
+
+Strong growth due to Microsoft's enterprise focus.
+Integrates well with existing Microsoft tools like Office 365 and Windows Server.
+Popular with enterprises and organizations already using Microsoft products.
+
+Azure regions are geographic areas with multiple data centers. Availability zones are separate data centers within a region, ensuring high availability and fault tolerance.
+54- regions
+140-availability zones 
+
+Azure region pairs are two geographically connected regions within the same area. They provide redundancy and disaster recovery by ensuring one region supports the other during outages. 
+For example, East US is paired with West US.
+
+Everything is resource in azure
+ip address ,vm
