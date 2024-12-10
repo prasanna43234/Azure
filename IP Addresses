@@ -1,0 +1,67 @@
+An IP address (Internet Protocol address) is a unique identifier for devices connected to a network, used to identify and locate devices for communication.
+
+Types of IP Addresses  
+1. IPv4: Four numbers separated by dots (e.g., 192.168.1.1), limited to 4.3 billion addresses.  
+2. IPv6: Eight groups of hexadecimal digits separated by colons (e.g., 2001:0db8::1), offering a much larger address space.  
+
+Classes of IPv4 Addresses  
+- Class A: 0.0.0.0 to 127.255.255.255 (large networks).  
+- Class B: 128.0.0.0 to 191.255.255.255 (medium networks).  
+- Class C: 192.0.0.0 to 223.255.255.255 (small networks).  
+- Class D: 224.0.0.0 to 239.255.255.255 (multicast).  
+- Class E: 240.0.0.0 to 255.255.255.255 (experimental).  
+
+Types Based on Accessibility  
+- Public IP: Globally unique, internet-accessible (e.g., 8.8.8.8).  
+- Private IP: Used in local networks, not internet-accessible (e.g., 192.168.1.1).  
+- Dynamic IP: Temporarily assigned by a DHCP server, changes over time.  
+- Static IP: Manually assigned, remains constant.  
+
+Key Components  
+- Network ID: Identifies the network.  
+- Host ID: Identifies the device within the network.  
+Example: In 192.168.1.1/24, 192.168.1 is the network ID, and 1 is the host ID.  
+
+How It Works  
+Devices send data using their IP address and the destination's IP address. Routers direct the data to the correct device or network, ensuring seamless communication.
+
+CIDR (Classless Inter-Domain Routing) is a method for efficiently allocating IP addresses and routing traffic. It replaces the old class-based system and is defined by a network address followed by a slash notation (e.g., 192.168.1.0/24).
+
+Key points:  
+1. The slash (/) indicates the number of bits in the subnet mask.  
+   - Example: /24 means the first 24 bits are for the network, and the rest are for hosts.  
+
+2. CIDR helps in:  
+   - Subnetting: Dividing a network into smaller segments.  
+   - Supernetting: Combining networks to reduce routing entries.  
+
+3. Benefits:  
+   - Efficient IP address usage.  
+   - Better route aggregation, reducing the size of routing tables.  
+
+For example, 10.0.0.0/24 represents a network with 256 IPs, and 10.0.0.0/16 represents a network with 65,536 IPs.
+
+In AWS class A wont be accessable 
+class A - /8-16million vms
+class B - /16-65000 devices
+class C - /24- 254 
+VNET is a regional resource .we can see this in every az.
+
+By default vms have outbound internet access.we can access internet from vm 
+private ip are free
+
+In a 10.0.0.0/24 network, there are 256 IP addresses (from 10.0.0.0 to 10.0.0.255), but only 251 are usable for devices. The remaining 5 are reserved for specific purposes:
+
+1. Network address (1 address)  
+   - 10.0.0.0: Identifies the network itself. This address cannot be assigned to any device.  
+
+2. Broadcast address (1 address)  
+   - 10.0.0.255: Used to send messages to all devices in the network.  
+
+3. Default gateway (1 address, typically)  
+   - Commonly 10.0.0.1: Used by the router or gateway for communication between the local network and external networks.  
+
+4. Reserved for future use (2 addresses, typically by standards or network policies)  
+   - Often allocated for management or special purposes depending on the setup, but they are not mandated by all configurations.  
+
+In most cases, the three critical reserved addresses are 10.0.0.0, 10.0.0.255, and 10.0.0.1. For specific use cases, the network administrator may reserve others for specific roles or future expansion.
