@@ -1,0 +1,85 @@
+Network Security Groups (NSGs) in Azure
+
+**Definition**:  
+Network Security Groups (NSGs) are a critical security feature in Azure that acts as a virtual firewall, controlling inbound and outbound traffic to Azure resources within a virtual network (VNet). 
+NSGs are used to enforce and define security rules at both the subnet and network interface level.
+
+Key Components
+
+1. Rules:  
+   Each NSG contains security rules that specify:
+   - Source: The origin of the traffic (e.g., IP address or Azure resource).
+   - Destination: The target of the traffic (e.g., a subnet or network interface).
+   - Protocol: TCP, UDP, or Any.
+   - Port Range: Specifies the port(s) affected.
+   - Direction: 
+     - Inbound: Traffic coming into the resource.
+     - Outbound: Traffic leaving the resource.
+   - Priority: A number between 100 and 4096 to determine rule precedence (lower numbers are processed first).
+   - Action: Allow or Deny.
+
+2. Default Rules:  
+   NSGs come with predefined default rules, such as:
+   - Allow traffic within the VNet.
+   - Allow Azure load balancer traffic.
+   - Deny all traffic by default at the end.
+
+3. Scope of Application:  
+   NSGs can be applied to:
+   - Subnets: Rules apply to all resources within the subnet.
+   - Network Interfaces (NICs): Rules apply only to the specific resource attached to the NIC.
+
+### How NSGs Work
+
+1. Traffic Evaluation:  
+   When traffic enters or exits a resource:
+   - The NSG evaluates it against all applicable rules in order of priority.
+   - The first matching rule determines whether the traffic is allowed or denied.
+
+2. Association:  
+   You can associate an NSG with:
+   - A subnet to secure all resources in the subnet.
+   - A network interface to apply rules to a specific VM or resource.
+
+3. Multi-Level Application:  
+   When both subnet-level and NIC-level NSGs are applied:
+   - Inbound traffic must pass both the subnet and NIC-level NSG rules to be allowed.
+   - Outbound traffic must pass both the NIC and subnet-level NSG rules.
+
+Use Cases
+
+1. Restricting Access:  
+   Allow access to specific ports (e.g., SSH on port 22) only from trusted IP addresses.
+
+2. Segmentation:  
+   Limit traffic between different subnets within the same VNet for improved isolation.
+
+3. Regulatory Compliance:  
+   Define and enforce strict rules to meet organizational or industry security standards.
+
+4. Traffic Monitoring:  
+   NSG flow logs can be enabled to analyze traffic patterns and troubleshoot issues.
+
+---
+Best Practices
+
+1. Least Privilege Principle:  
+   Allow only the necessary traffic to minimize the attack surface.
+
+2. Log and Monitor:  
+   Enable NSG flow logs in Azure Monitor to analyze traffic and identify anomalies.
+
+3. Organize Rules:  
+   Use descriptive names and consistent priorities to maintain readability and manageability.
+
+4. Avoid Broad Rules:  
+   Avoid rules like "Allow all traffic" unless absolutely necessary for troubleshooting.
+
+5. Use Application Security Groups (ASGs):  
+   Combine NSGs with ASGs to group resources logically and simplify rule management.
+
+---
+Conclusion
+
+Network Security Groups in Azure are an essential tool for controlling and securing network traffic. 
+By defining granular security rules, NSGs help ensure that resources in Azure are protected from unauthorized access while still allowing necessary communication.
