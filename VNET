@@ -1,0 +1,115 @@
+Azure Virtual Network (VNet) is a fundamental building block of your private network in Azure. 
+It provides an isolated and secure environment for running your resources, such as virtual machines (VMs), databases, and web apps, in the cloud. 
+VNets are similar to traditional on-premises networks, but they provide additional flexibility, scalability, and integration with Azure services.
+
+### Key Features of Azure VNet
+
+1. Isolation and Segmentation:
+   - Each VNet is isolated from other VNets, providing a secure environment for your workloads.
+   - You can define subnets within a VNet to segment your network logically.
+
+2. Address Space:
+   - VNets are defined with a range of private IP addresses in CIDR (Classless Inter-Domain Routing) notation.
+   - Example: 10.0.0.0/16.
+
+3. Subnets:
+   - Subnets divide the VNet address space into smaller segments.
+   - Subnets help manage traffic and isolate workloads.
+
+4. Communication Options:
+   - Intra-VNet Communication: Resources within the same VNet communicate without additional configurations.
+   - Inter-VNet Communication: VNets can connect to each other using VNet peering.
+   - On-Premises Connectivity: VNets can connect to on-premises networks using VPN gateways or ExpressRoute.
+
+5. Security:
+   - Network Security Groups (NSGs): Control inbound and outbound traffic at the subnet or VM level.
+   - Azure Firewall: Protects VNets with centralized policies.
+
+6. Integration with Azure Services:
+   - VNets can integrate with services like Azure Kubernetes Service (AKS), Azure SQL Database, and Azure App Service for seamless networking.
+
+7. Custom DNS:
+   - You can configure VNets to use custom DNS servers instead of Azure's default DNS service.
+
+8. Service Endpoints and Private Link:
+   - Service Endpoints: Extend VNet connectivity to Azure services, ensuring secure access.
+   - Private Link: Enables private access to Azure services via private IPs.
+
+9. Scalability:
+   - VNets support high scalability and can be resized or extended by modifying the address space.
+
+10. Monitoring and Troubleshooting:
+    - Azure provides tools like Network Watcher to monitor and troubleshoot network performance and issues.
+
+### Common Use Cases
+
+1. Deploying Virtual Machines:
+   - Host VMs in a secure network with controlled access.
+
+2. Hybrid Connectivity:
+   - Connect on-premises infrastructure to Azure using VPN or ExpressRoute.
+
+3. Microservices Architectures:
+   - Use VNets and subnets to deploy containerized or microservices applications.
+
+4. Secure Access to Azure Services:
+   - Use private links and service endpoints to connect securely to Azure services.
+
+5. Multi-Region Deployments:
+   - Use VNet peering to connect VNets in different Azure regions.
+
+### Example Configuration
+
+1. Create a VNet:
+   - Address Space: 10.0.0.0/16
+   - Subnet 1: 10.0.1.0/24 (For web servers)
+   - Subnet 2: 10.0.2.0/24 (For database servers)
+
+2. Apply Network Security Groups:
+   - Allow HTTP/HTTPS traffic to Subnet 1.
+   - Restrict all external access to Subnet 2.
+
+3. Enable VPN Gateway:
+   - Connect the VNet to on-premises infrastructure securely.
+
+Here’s a simplified guide to creating a VNet in Azure:
+
+---
+
+### Example  
+We want to create a VNet called MyVNet with:  
+- Address space: 10.0.0.0/16  
+- Two subnets:  
+  - WebSubnet: 10.0.1.0/24  
+  - DbSubnet: 10.0.2.0/24  
+
+---
+
+### Steps to Create a VNet  
+
+1. Log in to Azure Portal  
+   - Go to [Azure Portal](https://portal.azure.com).  
+
+2. Go to Virtual Networks  
+   - Search for Virtual Networks in the search bar.  
+   - Click + Create to start.  
+
+3. Fill Basic Details  
+   - Resource Group: Select or create a new one (e.g., MyResourceGroup).  
+   - VNet Name: Enter MyVNet.  
+   - Region: Choose a location (e.g., East US).  
+
+4. Set Address Space  
+   - Go to the IP Addresses tab.  
+   - Enter the address range 10.0.0.0/16.  
+
+5. Add Subnets  
+   - Add WebSubnet with range 10.0.1.0/24.  
+   - Add DbSubnet with range 10.0.2.0/24.  
+
+6. Review and Create  
+   - Click Review + Create, then Create to deploy the VNet.  
+
+7. Verify  
+   - Once created, go to Virtual Networks and check your VNet and subnets.  
+
