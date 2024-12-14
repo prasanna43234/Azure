@@ -1,0 +1,88 @@
+SSSB
+tracert google.com
+
+Route table defines path to the traffic.if i ping google ,then that request where to go 
+-.0.0.0.0 - internet 10.0.1.1 gateway 
+Route table 
+Name : Toconnectonprem
+Nexthop : virtual appliances's address 10.0.0.1
+Address space : 192.168.0.0/16 - on-prem server range
+
+Name :Toconnectcustomernetwork
+Nexthop : virtualnetworkgateway
+Address space : 172.32.0.0/16 - customer servers
+
+
+Route Tables in Azure are a critical component of Azure networking that define how network traffic is directed within Azure Virtual Networks (VNets). 
+They allow customization of routing to meet specific requirements.
+
+---
+
+### Key Concepts of Route Tables
+1. System Routes (Default Routes):  
+   - Azure automatically creates default routes for each subnet within a VNet.  
+   - These routes handle basic traffic, such as:  
+     - Traffic within the VNet.  
+     - Traffic to the Internet.  
+     - Traffic to on-premises networks via gateways.  
+
+2. User-Defined Routes (UDRs):  
+   - You can create custom routes to override Azure's default routing.  
+   - Useful for specific scenarios, such as directing traffic to a Network Virtual Appliance (NVA) or forcing all traffic through a firewall.  
+
+3. Route Table Association:  
+   - Route tables must be associated with one or more subnets.  
+   - Each subnet can only be associated with one route table at a time.  
+   - A route table affects all resources within the associated subnet.  
+
+4. Route Table Components:  
+   - Address Prefix: Specifies the destination (e.g., `0.0.0.0/0` for all traffic or `10.1.0.0/16` for a specific network).  
+   - Next Hop Type: Determines where the traffic is sent:  
+     - Virtual Network Gateway: For sending traffic to on-premises.  
+     - Internet: For Internet-bound traffic.  
+     - Virtual Appliance: For traffic sent to an NVA like a firewall.  
+     - None: For blocking traffic to the specified destination.  
+
+---
+
+### Why Use Route Tables?
+1. Traffic Control:  
+   - Redirect traffic through specific devices, like firewalls, for inspection.  
+   - Implement service chaining by sending traffic through NVAs.  
+
+2. Security:  
+   - Block traffic to certain destinations by creating "null routes" (`next hop: none`).  
+
+3. Custom Topologies:  
+   - Create hub-and-spoke architectures where traffic is routed through a central hub.  
+
+---
+
+### How to Create and Use a Route Table in Azure
+1. Create a Route Table:  
+   - Navigate to the Azure portal → Route Tables → Create a new route table.  
+   - Specify the name, subscription, and resource group.  
+
+2. Add Routes:  
+   - Inside the route table, add routes specifying the destination and next hop type.  
+
+3. Associate with a Subnet:  
+   - Navigate to the target subnet → Route Table → Associate the created route table.  
+
+---
+
+### Example Use Case
+- Scenario: You want all traffic to the Internet to go through a firewall.  
+- Steps:  
+  1. Create a route table with:  
+     - Destination: `0.0.0.0/0`  
+     - Next Hop Type: Virtual Appliance  
+     - Next Hop IP: Firewall's private IP address.  
+  2. Associate the route table with the subnet containing the resources.  
+
+---
+
+### Important Points
+- Routing is evaluated sequentially based on the most specific match.  
+- UDRs take precedence over system routes.  
+- If no routes match, traffic is dropped (default Azure behavior for unmatched traffic).  
