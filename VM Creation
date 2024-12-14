@@ -1,0 +1,86 @@
+SS
+### Creating a Virtual Machine (VM) in Azure: Step-by-Step Guide  
+
+Azure provides several ways to create a VM, including the Azure Portal, Azure CLI, and PowerShell. Here's an example walkthrough for creating a VM using the Azure Portal.
+
+---
+
+#### Step 1: Log in to the Azure Portal  
+- Open the Azure Portal at https://portal.azure.com.  
+- Sign in with your Azure credentials.
+
+---
+
+#### Step 2: Start the VM Creation Process  
+1. Navigate to Virtual Machines:  
+   - Search for "Virtual Machines" in the top search bar.  
+   - Click on "Virtual Machines" in the results.  
+
+2. Click on Create:  
+   - Select "Create" > "Azure virtual machine".  
+
+---
+
+#### Step 3: Configure Basic Settings  
+1. Subscription: Select your Azure subscription, such as Pay-As-You-Go.  
+2. Resource Group: Choose an existing resource group or create a new one, such as `MyResourceGroup`.  
+3. VM Name: Provide a name for your VM, such as `MyTestVM`.  
+4. Region: Select the deployment region, such as East US.  
+5. Availability Options: Choose from "No redundancy", "Availability set", or "Availability zones". For example, select "Availability zone".  
+6. Image: Select the OS for your VM, such as Ubuntu Server 20.04 LTS.  
+7. VM Size: Pick a size, such as Standard_B2s with 2 vCPUs and 4 GB RAM.  
+8. Authentication Type:  
+   - Choose "SSH public key" or "Password".  
+   - Set the username, such as `azureuser`, and password, such as `SecureP@ssw0rd!`.  
+
+---
+
+#### Step 4: Configure Disk Options  
+1. OS Disk Type: Choose disk performance, such as Standard SSD.  
+2. Data Disks: Add extra disks if needed, such as a 64 GB additional disk.  
+3. Encryption: Default encryption is enabled; configure advanced options if necessary.  
+
+---
+
+#### Step 5: Configure Networking  
+1. Virtual Network: Create or select a virtual network, such as `MyVNet`.  
+2. Subnet: Create or choose a subnet, such as `MySubnet`.  
+3. Public IP Address: Create a public IP for the VM, such as `MyPublicIP`.  
+4. NIC Network Security Group (NSG):  
+   - Choose "Basic" or "Advanced".  
+   - For basic, allow selected ports like SSH (22).  
+
+---
+
+#### Step 6: Configure Management Options  
+1. Monitoring: Enable boot diagnostics, such as "Enable with managed storage".  
+2. Auto-Shutdown: Enable and configure the shutdown time, such as 7:00 PM UTC.  
+3. Backup: Enable Azure Backup if required.  
+
+---
+
+#### Step 7: Configure Advanced Options  
+- Use this for extensions, cloud-init, or custom scripts. Leave default unless specific requirements exist.  
+
+---
+
+#### Step 8: Configure Tags (Optional)  
+- Add tags to categorize resources, such as Environment=Test or Owner=Lakshmi.  
+
+---
+
+#### Step 9: Review + Create  
+1. Validation: Azure checks your settings for errors.  
+2. Review: Confirm all configurations.  
+3. Create: Click "Create" to start the provisioning process.  
+
+---
+
+#### Step 10: Access the VM  
+1. Locate the VM: Go to "Virtual Machines" and select `MyTestVM`.  
+2. Connect to the VM:  
+   - Linux: Use SSH with `ssh azureuser@<Public-IP>`.  
+   - Windows: Use RDP with the provided public IP.  
+
+---
+  
